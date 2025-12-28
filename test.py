@@ -1,30 +1,26 @@
-#from context import infinity
-
-from infinity import InfinityBase
+from __future__ import annotations
 
 import time
+from infinity import InfinityBase, discover_bases
 
-def futurePrint(s):
-    print(s)
+print("Found bases:", discover_bases())
 
-base = InfinityBase()
+base = InfinityBase(debug=True).connect()
 
-base.onTagsChanged = lambda: futurePrint("Tags added or removed.")
+base.onTagsChanged = lambda: print("Tags added or removed.")
 
-base.connect()
+print("All tags:", base.get_all_tags())
 
-base.getAllTags(futurePrint)
-
-base.setColor(1, 200, 0, 0)
-
-base.setColor(2, 0, 56, 0)
-
-base.fadeColor(3, 0, 0, 200)
+base.set_color(1, 200, 0, 0)
+base.set_color(2, 0, 56, 0)
+base.fade_color(3, 0, 0, 200)
 
 time.sleep(3)
+base.flash_color(3, 0, 0, 200)
 
-base.flashColor(3, 0, 0, 200)
-
-print("Try adding and removing figures and discs to/from the base. CTRL-C to quit")
-while True:
-    pass
+print("Try adding/removing figures/discs to/from the base. CTRL-C to quit")
+try:
+    while True:
+        time.sleep(1)
+finally:
+    base.disconnect()
