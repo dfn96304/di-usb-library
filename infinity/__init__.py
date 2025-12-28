@@ -1,1 +1,1 @@
-from infinity import InfinityBase
+from .infinity import InfinityBase, discover_bases
