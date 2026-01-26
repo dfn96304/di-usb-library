@@ -1,4 +1,4 @@
-# Modern di-usb-library patch
+di-usb-library patch, working with modern python/OS versions
 
 ## Dependencies
 Python: `pip install hid`
